@@ -61,6 +61,11 @@ public class Usuarios {
     public void setContra(String contra) {
         this.contra = contra;
     }
+
+    @Override
+    public String toString() {
+        return " nombre: " + nombre + ", apellido: " + apellido + ", fecha: " + fecha + ", correo: " + correo + ", contra: " + contra + '}';
+    }
     
     
 }

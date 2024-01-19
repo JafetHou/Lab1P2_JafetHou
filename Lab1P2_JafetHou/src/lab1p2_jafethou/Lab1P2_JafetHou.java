@@ -35,13 +35,26 @@ public class Lab1P2_JafetHou {
                     
                     break;
                 }
+                case 2:{
+                    
+                    break;
+                }
+                case 3:{
+                    
+                    break;
+                }
+                case 4:{
+                    seguir = false;
+                    break;
+                }
             }
             
         }
     }
     public static void agregar(ArrayList <Usuarios> registro) throws ParseException{
         
-        boolean valido = false; 
+        boolean valido = false;
+        boolean valcontra = false;
         
         System.out.println("Ingrese su nombre: ");
         String nombre = leer.next();
@@ -61,36 +74,40 @@ public class Lab1P2_JafetHou {
         String contra = leer.next();
         
         validar(correo, valido);
+        validarcontra(contra, valcontra);
         
-        if(valido == true){
+        if(valido == true && valcontra == true){
+            
             Usuarios inventario = new Usuarios (nombre, apellido, fecha, correo, contra);
             registro.add(inventario);
+            
         }
         
     }
     public static String validar(String correo, boolean valido){
-        String dominio[] = correo.split("@");
-        String c = "";
-        c = dominio[1];
         
         while(valido == false){
         
-            if(c.equals("gmail.com")){
+            String dominio[] = correo.split("@");
+            String c = "";
+            c = dominio[1];
+            
+            if(c.equalsIgnoreCase("gmail.com")){
                 valido = true;
             }
-            if(c.equals("outlook.com")){
+            if(c.equalsIgnoreCase("outlook.com")){
                 valido = true;
             }
-            if(dominio.equals("yahoo.com")){
+            if(c.equalsIgnoreCase("yahoo.com")){
                 valido = true;
             }
-            if(dominio.equals("icloud.com")){
+            if(c.equalsIgnoreCase("icloud.com")){
                 valido = true;
             }
-            if(dominio.equals("protonmail.com")){
+            if(c.equalsIgnoreCase("protonmail.com")){
                 valido = true;
             }
-            if(dominio.equals("fastmail.com")){
+            if(c.equalsIgnoreCase("fastmail.com")){
                 valido = true;
             }
             else if(valido == false){
@@ -99,6 +116,65 @@ public class Lab1P2_JafetHou {
             }
         }       
         return correo;
+    }
+    public static String validarcontra(String contra, boolean valcontra){
+        
+        while(valcontra == false){
+            
+            boolean mayusculas = false;
+            boolean minusculas = false;
+            boolean numero = false;
+            boolean simbolo = false;
+            
+            if(contra.length() >= 8){
+
+               for (int i = 0; i < contra.length(); i++) {
+
+                   char carac = contra.charAt(i);
+
+                   if(carac >= 65 && carac <= 90 ){
+
+                        mayusculas = true;
+                   }
+               }
+                for (int i = 0; i < contra.length(); i++) {
+
+                    char carac = contra.charAt(i);
+
+                    if(carac >= 97 && carac <= 122){
+                        minusculas = true;
+                    }
+                }
+                for (int i = 0; i < contra.length(); i++) {
+
+                    char carac = contra.charAt(i);
+
+                    if(carac >= 48 && carac <= 57){
+                        numero = true;
+                    }
+                }
+                for (int i = 0; i < contra.length(); i++) {
+
+                    char carac = contra.charAt(i);
+
+                    if(carac == 33 || carac == 63 || carac == 60 || carac == 62 || carac == 36 || carac == 37){
+                        simbolo = true;
+                    }
+                }
+                
+                if(mayusculas == true && minusculas == true && numero == true && simbolo == true){
+                    
+                    valcontra = true;
+                    
+                }else{
+                    
+                    System.out.println("Ingrese una contrasena correcta: ");
+                    contra = leer.next();
+                
+                }
+            }
+        }
+        return contra;
     }
     
 }
