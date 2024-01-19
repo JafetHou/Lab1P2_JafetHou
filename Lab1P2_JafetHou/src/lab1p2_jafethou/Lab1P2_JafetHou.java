@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.StringTokenizer;
 
@@ -66,18 +67,18 @@ public class Lab1P2_JafetHou {
         System.out.println("Ingrese su apellido: ");
         String apellido = leer.next();
     
-        System.out.println("Ingrese su fecha de nacimiento [dd/MM/yyy]: ");
+        System.out.println("Ingrese su fecha de nacimiento [dd/MM/yyyy]: ");
         String nacimiento = leer.next();
         
-        SimpleDateFormat osd = new SimpleDateFormat("dd/MM/yyy");
+        SimpleDateFormat osd = new SimpleDateFormat("dd/MM/yyyy");
         Date fecha = osd.parse(nacimiento);
         int anios = factual.getYear() - fecha.getYear();
         
-        System.out.println(fecha);
-        System.out.println(factual);
-        String edad = edad(anios,factual,fecha);
-        
-        System.out.println(anios);
+        Calendar actual = Calendar.getInstance();
+        Calendar calnacimiento = Calendar.getInstance();
+        calnacimiento.setTime(fecha);
+       
+        String edad = edad(anios,actual,calnacimiento);
         
         System.out.println("Ingrese su correo: ");
         String correo = leer.next();
@@ -99,10 +100,11 @@ public class Lab1P2_JafetHou {
         
     }
     
-    public static String edad(int anios, Date factual, Date fecha) throws ParseException{
+    public static String edad(int anios, Calendar actual, Calendar calnacimiento) throws ParseException{
         
-        int meses = factual.getMonth() - fecha.getMonth();
-        int dias = factual.getDay() - fecha.getDay();
+        anios = actual.get(Calendar.YEAR) - calnacimiento.get(Calendar.YEAR);
+        int meses = actual.get(Calendar.MONTH) - calnacimiento.get(Calendar.MONTH);
+        int dias = actual.get(Calendar.DAY_OF_MONTH) - calnacimiento.get(Calendar.DAY_OF_MONTH);
         
         if(anios < 0){
             anios = anios-anios*2;
@@ -222,11 +224,12 @@ public class Lab1P2_JafetHou {
         
         for (int i = 0; i < registro.size(); i++) {
             String dominios = "gmail.com, Outlook.com, Yahoo.com, iCloud.com, ProtonMail.com, FastMail.com";
-        
-            StringTokenizer tkns = new StringTokenizer(registro.get(i).toString(), dominios);
+            String dom;
+            
+            StringTokenizer tkns = new StringTokenizer(registro.get(i).toString(), "@");
             while(tkns.hasMoreTokens()){
-                Object nextElement = tkns.nextToken(dominios);
-                System.out.println(nextElement);
+                dom = tkns.nextToken();
+                System.out.println(dom);
             }
             //System.out.println(i+1+") "+registro.get(i).toString());
             
