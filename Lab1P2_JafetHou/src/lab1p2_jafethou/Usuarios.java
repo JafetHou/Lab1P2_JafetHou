@@ -9,14 +9,14 @@ public class Usuarios {
     
     String nombre;
     String apellido;
-    Date fecha;
+    String edad;
     String correo;
     String contra;
     
-    public Usuarios(String nombreN, String apellidoN, Date fechaN, String correoN, String contraN){
+    public Usuarios(String nombreN, String apellidoN, String edadN, String correoN, String contraN){
         this.nombre = nombreN;
         this.apellido = apellidoN;
-        this.fecha = fechaN;
+        this.edad = edadN;
         this.correo = correoN;
         this.contra = contraN;
         
@@ -30,8 +30,8 @@ public class Usuarios {
         return apellido;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public String getedad() {
+        return edad;
     }
 
     public String getCorreo() {
@@ -50,8 +50,8 @@ public class Usuarios {
         this.apellido = apellido;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setedad(String edad) {
+        this.edad = edad;
     }
 
     public void setCorreo(String correo) {
@@ -64,7 +64,8 @@ public class Usuarios {
 
     @Override
     public String toString() {
-        return " nombre: " + nombre + ", apellido: " + apellido + ", fecha: " + fecha + ", correo: " + correo + ", contra: " + contra + '}';
+        
+        return " nombre: " + nombre + ", apellido: " + apellido + ", edad: " + edad + ", correo: " + correo + ", contra: " + contra + '}';
     }
     
     
