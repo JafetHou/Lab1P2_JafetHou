@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.StringTokenizer;
 
 public class Lab1P2_JafetHou {
 
@@ -103,9 +104,6 @@ public class Lab1P2_JafetHou {
         int meses = factual.getMonth() - fecha.getMonth();
         int dias = factual.getDay() - fecha.getDay();
         
-        anios = factual.getSeconds()-fecha.getSeconds();
-        System.out.println(anios);
-        System.out.println(factual.getDay()+"-"+fecha.getDay()+": "+dias);
         if(anios < 0){
             anios = anios-anios*2;
         }
@@ -220,6 +218,19 @@ public class Lab1P2_JafetHou {
             System.out.println(i+1+") "+registro.get(i).toString());
         }
     }
-    //public static void listadominio(ArrayList <Usuarios> registro) throws ParseException{
+    public static void listadominio(ArrayList <Usuarios> registro) throws ParseException{
+        
+        for (int i = 0; i < registro.size(); i++) {
+            String dominios = "gmail.com, Outlook.com, Yahoo.com, iCloud.com, ProtonMail.com, FastMail.com";
+        
+            StringTokenizer tkns = new StringTokenizer(registro.get(i).toString(), dominios);
+            while(tkns.hasMoreTokens()){
+                Object nextElement = tkns.nextToken(dominios);
+                System.out.println(nextElement);
+            }
+            //System.out.println(i+1+") "+registro.get(i).toString());
+            
+        }
+    }
     
 }
