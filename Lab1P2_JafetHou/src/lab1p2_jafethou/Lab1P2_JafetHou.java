@@ -151,7 +151,6 @@ public class Lab1P2_JafetHou {
                 correo = leer.next();
             }
         }       
-        System.out.println(valido);
         return valido;
     }
     public static boolean validarcontra(String contra, boolean valcontra){
@@ -211,7 +210,6 @@ public class Lab1P2_JafetHou {
                 }
             }
         }
-        System.out.println(valcontra);
         return valcontra;
     }
     public static void listat(ArrayList <Usuarios> registro) throws ParseException{
@@ -231,7 +229,6 @@ public class Lab1P2_JafetHou {
                 dom = tkns.nextToken();
                 System.out.println(dom);
             }
-            //System.out.println(i+1+") "+registro.get(i).toString());
             
         }
     }
